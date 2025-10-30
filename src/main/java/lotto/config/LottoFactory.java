@@ -6,10 +6,22 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoFactory {
-    public static LottoController createLottoController() {
-        InputView inputView = new InputView();
-        CountConverter countConverter = new CountConverter();
-        OutputView outputView = new OutputView();
-        return new LottoController(inputView, outputView, countConverter);
+    public InputView inputView() {
+        return new InputView();
+    }
+    public OutputView outputView() {
+        return new OutputView();
+    }
+
+    public CountConverter countConverter() {
+        return new CountConverter();
+    }
+
+    public LottoController createLottoController() {
+        return new LottoController(
+                inputView(),
+                outputView(),
+                countConverter()
+        );
     }
 }
