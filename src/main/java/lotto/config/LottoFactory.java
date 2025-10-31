@@ -1,7 +1,7 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
-import lotto.domain.CountConverter;
+import lotto.service.CountConverter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
