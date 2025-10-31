@@ -2,6 +2,7 @@ package lotto.config;
 
 import lotto.controller.LottoController;
 import lotto.service.CountConverter;
+import lotto.service.NumbersConverter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,11 +18,16 @@ public class LottoFactory {
         return new CountConverter();
     }
 
+    public NumbersConverter numbersConverter() {
+        return new NumbersConverter();
+    }
+
     public LottoController createLottoController() {
         return new LottoController(
                 inputView(),
                 outputView(),
-                countConverter()
+                countConverter(),
+                numbersConverter()
         );
     }
 }
