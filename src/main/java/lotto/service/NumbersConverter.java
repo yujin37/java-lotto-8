@@ -9,11 +9,11 @@ public class NumbersConverter {
         return List.of(numbers.split(","));
     }
 
-    private Integer convertInt(String number) {
+    private Integer convertInt(String number, String errorMessage) {
         try {
             return Integer.parseInt(number);
         } catch (Exception e) {
-            throw new IllegalArgumentException(NumberErrorMessage.WINNING_NUMBERS_NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
@@ -21,14 +21,20 @@ public class NumbersConverter {
     private List<Integer> convertNumber(List<String> numbers) {
         List<Integer> convertedNumber = new ArrayList<>();
         for(String num:numbers) {
-            convertedNumber.add(convertInt(num));
+            convertedNumber.add(convertInt(num, NumberErrorMessage.WINNING_NUMBERS_NOT_NUMBER.getMessage()));
         }
         return convertedNumber;
     }
+
+
 
     public List<Integer> convertToNumbers(String numbers) {
         List<String> parsedNumbers = parseNumber(numbers);
         return convertNumber(parsedNumbers);
 
+    }
+
+    public int convertToBonus(String number) {
+        return convertInt(number, NumberErrorMessage.BONUS_NUMBER_NOT_NUMBER.getMessage());
     }
 }

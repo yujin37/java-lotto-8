@@ -6,6 +6,7 @@ import lotto.config.LottoFactory;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.service.AmountValidator;
+import lotto.service.BonusValidator;
 import lotto.service.CountConverter;
 import lotto.domain.GenerateNumbers;
 import lotto.service.NumbersConverter;
@@ -53,6 +54,21 @@ public class LottoController {
             }
         }
     }
+
+    public int checkBonus(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String bonusNumber = inputView.inputBonusNumber();
+                //검증 자체는 동일
+                NumbersValidator.isNumbers(bonusNumber);
+                int bonus = numbersConverter.convertToBonus(bonusNumber);
+                BonusValidator.validateBonus(winningNumbers, bonus);
+                return bonus;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
     public void run() {
         int count = checkAmount();
         outputView.outputPurchaseCount(count);
@@ -60,5 +76,6 @@ public class LottoController {
         outputView.outputTickets(tickets);
         List<Integer> winningNumbers = checkNumbers();
         Lotto lotto = new Lotto(winningNumbers);
+        int bonusNum = checkBonus(winningNumbers);
     }
 }
