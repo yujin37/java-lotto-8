@@ -14,8 +14,8 @@ public class LottoNumberTest {
     @Test
     void 중복이_있는가() {
         LottoMachine lottoMachine = new LottoMachine();
-        List<Lotto> tickets = lottoMachine.issueTicket(1);
-        List<Integer> ticket = tickets.get(0).getNumbers();
+        List<List<Integer>> tickets = lottoMachine.issueTicket(1);
+        List<Integer> ticket = tickets.get(0);
         long duplicateCount = ticket.stream().distinct().count();
         assertEquals(6, duplicateCount);
     }
@@ -23,16 +23,16 @@ public class LottoNumberTest {
     @Test
     void 지정한_로또_크기만큼_나왔는가() {
         LottoMachine lottoMachine = new LottoMachine();
-        List<Lotto> tickets = lottoMachine.issueTicket(1);
-        List<Integer> ticket = tickets.get(0).getNumbers();
+        List<List<Integer>> tickets = lottoMachine.issueTicket(1);
+        List<Integer> ticket = tickets.get(0);
         assertEquals(6, ticket.size());
     }
     //3.정렬이 되어있는가
     @Test
     void 정렬이_되었는가() {
         LottoMachine lottoMachine = new LottoMachine();
-        List<Lotto> tickets = lottoMachine.issueTicket(1);
-        List<Integer> ticket = tickets.get(0).getNumbers();
+        List<List<Integer>> tickets = lottoMachine.issueTicket(1);
+        List<Integer> ticket = tickets.get(0);
         assertThat(ticket).isSorted();
     }
 }
