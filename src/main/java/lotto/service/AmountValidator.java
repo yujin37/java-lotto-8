@@ -6,7 +6,7 @@ public class AmountValidator {
     public static int isNumber(String amount) {
         int money = 0;
         try {
-            money = Integer.parseInt(amount);
+            money = Integer.parseInt(amount.trim());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(AmountErrorMessage.AMOUNT_NOT_NUMBER.getMessage());
 
@@ -34,8 +34,8 @@ public class AmountValidator {
 
     public static void isAmount(String amount) {
         int money = isNumber(amount);
-        isUnit(money);
         isNegative(money);
         isMaximum(money);
+        isUnit(money);
     }
 }
