@@ -56,7 +56,7 @@ public class LottoController {
     public void run() {
         int count = checkAmount();
         outputView.outputPurchaseCount(count);
-        List<Lotto> tickets = lottoMachine.issueTicket(count);
+        List<List<Integer>> tickets = lottoMachine.issueTicket(count);
         outputView.outputTickets(tickets);
         List<Integer> winningNumbers = checkNumbers();
     }

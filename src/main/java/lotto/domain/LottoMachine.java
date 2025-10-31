@@ -6,14 +6,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
-    public List<Lotto> issueTicket(int count) {
+    public List<List<Integer>> issueTicket(int count) {
 
-        List<Lotto> tickets = new ArrayList<>();
+        List<List<Integer>> tickets = new ArrayList<>();
         for(int i = 0; i < count ; i++) {
             List<Integer> numbers = GenerateNumbers.LottoNumbers();
             Collections.sort(numbers);
-            Lotto lotto = new Lotto(numbers);
-            tickets.add(lotto);
+            tickets.add(numbers);
         }
         return tickets;
     }
