@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.service;
 
 public class AmountValidator {
     public static int isNumber(String amount) {

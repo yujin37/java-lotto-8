@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.service;
 
 public class CountConverter {
     public int calculateCount(int money) {
