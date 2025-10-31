@@ -29,7 +29,7 @@ public class AmountValidatorTest {
     }
     //3. 문자 입력(특수문자, 알파벳, 한글)
     @ParameterizedTest
-    @ValueSource(strings = {"!!!!", "abc", "2000won"})
+    @ValueSource(strings = {"!!!!", "abc", "2000won","2000.5"})
     void 구매금액이_문자로_들어온_경우(String amount) {
         assertThatThrownBy(() -> AmountValidator.isAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
