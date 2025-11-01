@@ -32,4 +32,8 @@ public class OutputView {
                                 " - " + winningResult.get(rank) + "개");
         }
     }
+
+    public void outputProfitRate(double profit) {
+        System.out.println("총 수익률은 " + profit + "% 입니다.");
+    }
 }

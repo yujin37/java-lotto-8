@@ -13,6 +13,7 @@ import lotto.service.CountConverter;
 import lotto.domain.GenerateNumbers;
 import lotto.service.NumbersConverter;
 import lotto.service.NumbersValidator;
+import lotto.service.ProfitCalculator;
 import lotto.service.WinningDetails;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -83,5 +84,8 @@ public class LottoController {
         WinningDetails winningDetails = new WinningDetails();
         Map<Rank, Integer> winningResult = winningDetails.calculateWinning(tickets, winningNumbers, bonusNum);
         outputView.outputStatistics(winningResult);
+        ProfitCalculator profitCalculator = new ProfitCalculator();
+        double profit = profitCalculator.calculateProfitRate(winningResult, count);
+        outputView.outputProfitRate(profit);
     }
 }
