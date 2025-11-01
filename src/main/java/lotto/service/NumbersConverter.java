@@ -16,14 +16,14 @@ public class NumbersConverter {
     public int convertToBonus(String number) {
         return convertInt(number, NumberErrorMessage.BONUS_NUMBER_NOT_NUMBER.getMessage());
     }
-    
+
     private List<String> parseNumber(String numbers) {
         return List.of(numbers.split(SPLIT_CHAR));
     }
 
     private Integer convertInt(String number, String errorMessage) {
         try {
-            return Integer.parseInt(number);
+            return Integer.parseInt(number.strip());
         } catch (Exception e) {
             throw new IllegalArgumentException(errorMessage);
         }
@@ -33,7 +33,7 @@ public class NumbersConverter {
     private List<Integer> convertNumber(List<String> numbers) {
         List<Integer> convertedNumber = new ArrayList<>();
         for (String num : numbers) {
-            convertedNumber.add(convertInt(num, NumberErrorMessage.WINNING_NUMBERS_NOT_NUMBER.getMessage()));
+            convertedNumber.add(convertInt(num.strip(), NumberErrorMessage.WINNING_NUMBERS_NOT_NUMBER.getMessage()));
         }
         return convertedNumber;
     }
