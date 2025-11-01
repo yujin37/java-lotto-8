@@ -1,11 +1,12 @@
 package lotto.service;
 
+import lotto.exception.LottoConstants;
+
 public class CountConverter {
-    private final static int UNIT = 1000;
 
     public int calculateCount(int money) {
         System.out.println(money);
-        return money / UNIT;
+        return money / LottoConstants.UNIT;
     }
 
     public int convertToCount(String amount) {

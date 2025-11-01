@@ -1,11 +1,10 @@
 package lotto.service;
 
 import java.util.List;
+import lotto.exception.LottoConstants;
 import lotto.exception.NumberErrorMessage;
 
 public class BonusValidator {
-    private final static int MIN_NUM = 1;
-    private final static int MAX_NUM = 45;
 
     private static void duplicateBonus(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
@@ -14,7 +13,7 @@ public class BonusValidator {
     }
 
     private static void validateRange(int bonusNumber) {
-        if (bonusNumber < MIN_NUM || bonusNumber > MAX_NUM) {
+        if (bonusNumber < LottoConstants.MIN_NUM || bonusNumber > LottoConstants.MAX_NUM) {
             throw new IllegalArgumentException(NumberErrorMessage.BONUS_NUMBER_NOT_RANGE.getMessage());
         }
     }

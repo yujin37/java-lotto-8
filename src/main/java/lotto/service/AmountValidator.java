@@ -1,11 +1,9 @@
 package lotto.service;
 
 import lotto.exception.AmountErrorMessage;
+import lotto.exception.LottoConstants;
 
 public class AmountValidator {
-    private static final int UNIT = 1000;
-    private static final int MIN_AMOUNT = 1000;
-    private static final int MAX_AMOUNT = 100000;
 
     public static int isNumber(String amount) {
         int money = 0;
@@ -18,19 +16,19 @@ public class AmountValidator {
     }
 
     public static void isUnit(int money) {
-        if (money % UNIT != 0) {
+        if (money % LottoConstants.UNIT != 0) {
             throw new IllegalArgumentException(AmountErrorMessage.AMOUNT_NOT_DIVIDE_UNIT.getMessage());
         }
     }
 
     public static void isNegative(int money) {
-        if (money < MIN_AMOUNT) {
+        if (money < LottoConstants.MIN_AMOUNT) {
             throw new IllegalArgumentException(AmountErrorMessage.AMOUNT_MIN_MORE.getMessage());
         }
     }
 
     public static void isMaximum(int money) {
-        if (money > MAX_AMOUNT) {
+        if (money > LottoConstants.MAX_AMOUNT) {
             throw new IllegalArgumentException(AmountErrorMessage.AMOUNT_MAX_UNDER.getMessage());
         }
     }

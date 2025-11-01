@@ -2,12 +2,9 @@ package lotto.service;
 
 import java.util.Map;
 import lotto.domain.Rank;
+import lotto.exception.LottoConstants;
 
 public class ProfitCalculator {
-    private final static double LOTTO_PRICE = 1000.0;
-    private final static int RATE_MULTI = 100;
-    private final static int ROUND_MULTI = 10;
-    private final static double ROUND_DIVIDE = (double) ROUND_MULTI;
 
     private int calculateTotal(Map<Rank, Integer> winningResult) {
         int totalProfit = 0;
@@ -20,9 +17,9 @@ public class ProfitCalculator {
     }
 
     private double calculateRate(int total, int count) {
-        double buy = count * LOTTO_PRICE;
-        double rate = ((double) total / buy) * RATE_MULTI;
-        return Math.round(rate * ROUND_MULTI) / ROUND_DIVIDE;
+        double buy = count * LottoConstants.LOTTO_PRICE;
+        double rate = ((double) total / buy) * LottoConstants.RATE_MULTI;
+        return Math.round(rate * LottoConstants.ROUND_MULTI) / LottoConstants.ROUND_DIVIDE;
     }
 
     public double calculateProfitRate(Map<Rank, Integer> winningResult, int count) {
