@@ -11,6 +11,7 @@ public class LottoConstants {
 
     public final static int MIN_NUM = 1;
     public final static int MAX_NUM = 45;
+    public final static int LOTTO_CNT = 6;
 
     public static final int UNIT = 1000;
     public static final int MIN_AMOUNT = 1000;
