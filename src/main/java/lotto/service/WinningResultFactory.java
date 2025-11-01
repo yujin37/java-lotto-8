@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.domain.Rank;
 
 public class WinningResultFactory {
+
     public static Map<Rank, Integer> createInitialResult() {
         Map<Rank, Integer> resultWinning = new HashMap<>();
         for (Rank rank : Rank.values()) {

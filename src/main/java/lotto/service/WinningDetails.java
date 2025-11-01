@@ -7,6 +7,7 @@ import lotto.domain.Rank;
 
 public class WinningDetails {
     public Map<Rank, Integer> calculateWinning(List<List<Integer>> tickets, List<Integer> winningNumbers, int bonus) {
+
         Map<Rank, Integer> resultWinning = WinningResultFactory.createInitialResult();
         for (List<Integer> ticket : tickets) {
             long correctValue = guessNumbers(ticket, winningNumbers);
@@ -23,7 +24,7 @@ public class WinningDetails {
                         .anyMatch(Predicate.isEqual(t)))
                 .count();
     }
-    
+
     private boolean guessBonus(List<Integer> ticket, int bonus) {
         return ticket.contains(bonus);
     }

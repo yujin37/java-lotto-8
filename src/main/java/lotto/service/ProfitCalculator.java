@@ -6,6 +6,11 @@ import lotto.exception.LottoConstants;
 
 public class ProfitCalculator {
 
+    public double calculateProfitRate(Map<Rank, Integer> winningResult, int count) {
+        int total = calculateTotal(winningResult);
+        return calculateRate(total, count);
+    }
+    
     private int calculateTotal(Map<Rank, Integer> winningResult) {
         int totalProfit = 0;
         for (Map.Entry<Rank, Integer> entry : winningResult.entrySet()) {
@@ -20,10 +25,5 @@ public class ProfitCalculator {
         double buy = count * LottoConstants.LOTTO_PRICE;
         double rate = ((double) total / buy) * LottoConstants.RATE_MULTI;
         return Math.round(rate * LottoConstants.ROUND_MULTI) / LottoConstants.ROUND_DIVIDE;
-    }
-
-    public double calculateProfitRate(Map<Rank, Integer> winningResult, int count) {
-        int total = calculateTotal(winningResult);
-        return calculateRate(total, count);
     }
 }

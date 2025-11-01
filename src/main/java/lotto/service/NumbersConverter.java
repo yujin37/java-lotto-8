@@ -7,6 +7,16 @@ import lotto.exception.NumberErrorMessage;
 public class NumbersConverter {
     private final static String SPLIT_CHAR = ",";
 
+    public List<Integer> convertToNumbers(String numbers) {
+        List<String> parsedNumbers = parseNumber(numbers);
+        return convertNumber(parsedNumbers);
+
+    }
+
+    public int convertToBonus(String number) {
+        return convertInt(number, NumberErrorMessage.BONUS_NUMBER_NOT_NUMBER.getMessage());
+    }
+    
     private List<String> parseNumber(String numbers) {
         return List.of(numbers.split(SPLIT_CHAR));
     }
@@ -26,16 +36,5 @@ public class NumbersConverter {
             convertedNumber.add(convertInt(num, NumberErrorMessage.WINNING_NUMBERS_NOT_NUMBER.getMessage()));
         }
         return convertedNumber;
-    }
-
-
-    public List<Integer> convertToNumbers(String numbers) {
-        List<String> parsedNumbers = parseNumber(numbers);
-        return convertNumber(parsedNumbers);
-
-    }
-
-    public int convertToBonus(String number) {
-        return convertInt(number, NumberErrorMessage.BONUS_NUMBER_NOT_NUMBER.getMessage());
     }
 }

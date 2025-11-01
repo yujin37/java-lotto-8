@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
 import lotto.domain.Rank;
 import lotto.service.AmountValidator;
 import lotto.service.BonusValidator;
@@ -22,9 +21,21 @@ public class LottoController {
     private final CountConverter countConverter;
     private final NumbersConverter numbersConverter;
 
-    private final LottoMachine lottoMachine = new LottoMachine();
     private final LottoService lottoService = new LottoService();
 
+    public void run() {
+        int count = checkAmount();
+        outputView.outputPurchaseCount(count);
+        List<List<Integer>> tickets = lottoService.generateTickets(count);
+        outputView.outputTickets(tickets);
+        List<Integer> winningNumbers = checkNumbers();
+        int bonusNum = checkBonus(winningNumbers);
+        Map<Rank, Integer> winningResult = lottoService.calculateWinning(tickets, winningNumbers, bonusNum);
+        outputView.outputStatistics(winningResult);
+        double profit = lottoService.calculateProfit(winningResult, count);
+        outputView.outputProfitRate(profit);
+    }
+    
     public LottoController(InputView inputView, OutputView outputView, CountConverter countConverter,
                            NumbersConverter numbersConverter) {
         this.inputView = inputView;
@@ -33,7 +44,7 @@ public class LottoController {
         this.numbersConverter = numbersConverter;
     }
 
-    public int checkAmount() {
+    private int checkAmount() {
         while (true) {
             try {
                 String purChaseAmount = inputView.inputPurchaseAmount();
@@ -47,7 +58,7 @@ public class LottoController {
         }
     }
 
-    public List<Integer> checkNumbers() {
+    private List<Integer> checkNumbers() {
         while (true) {
             try {
                 String winningNumber = inputView.inputWinningNumbers();
@@ -63,7 +74,7 @@ public class LottoController {
         }
     }
 
-    public int checkBonus(List<Integer> winningNumbers) {
+    private int checkBonus(List<Integer> winningNumbers) {
         while (true) {
             try {
                 String bonusNumber = inputView.inputBonusNumber();
@@ -76,18 +87,5 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    public void run() {
-        int count = checkAmount();
-        outputView.outputPurchaseCount(count);
-        List<List<Integer>> tickets = lottoService.generateTickets(count);
-        outputView.outputTickets(tickets);
-        List<Integer> winningNumbers = checkNumbers();
-        int bonusNum = checkBonus(winningNumbers);
-        Map<Rank, Integer> winningResult = lottoService.calculateWinning(tickets, winningNumbers, bonusNum);
-        outputView.outputStatistics(winningResult);
-        double profit = lottoService.calculateProfit(winningResult, count);
-        outputView.outputProfitRate(profit);
     }
 }

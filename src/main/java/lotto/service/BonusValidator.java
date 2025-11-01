@@ -6,6 +6,11 @@ import lotto.exception.NumberErrorMessage;
 
 public class BonusValidator {
 
+    public static void validateBonus(List<Integer> winningNumber, int bonusNumber) {
+        duplicateBonus(winningNumber, bonusNumber);
+        validateRange(bonusNumber);
+    }
+    
     private static void duplicateBonus(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(NumberErrorMessage.BONUS_DUPLICATE_WINNING_NUMBER.getMessage());
@@ -16,10 +21,5 @@ public class BonusValidator {
         if (bonusNumber < LottoConstants.MIN_NUM || bonusNumber > LottoConstants.MAX_NUM) {
             throw new IllegalArgumentException(NumberErrorMessage.BONUS_NUMBER_NOT_RANGE.getMessage());
         }
-    }
-
-    public static void validateBonus(List<Integer> winningNumber, int bonusNumber) {
-        duplicateBonus(winningNumber, bonusNumber);
-        validateRange(bonusNumber);
     }
 }

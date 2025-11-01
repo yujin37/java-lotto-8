@@ -5,7 +5,14 @@ import lotto.exception.LottoConstants;
 
 public class AmountValidator {
 
-    public static int isNumber(String amount) {
+    public static void isAmount(String amount) {
+        int money = isNumber(amount);
+        isNegative(money);
+        isMaximum(money);
+        isUnit(money);
+    }
+
+    private static int isNumber(String amount) {
         int money = 0;
         try {
             money = Integer.parseInt(amount.trim());
@@ -15,28 +22,21 @@ public class AmountValidator {
         return money;
     }
 
-    public static void isUnit(int money) {
+    private static void isUnit(int money) {
         if (money % LottoConstants.UNIT != 0) {
             throw new IllegalArgumentException(AmountErrorMessage.AMOUNT_NOT_DIVIDE_UNIT.getMessage());
         }
     }
 
-    public static void isNegative(int money) {
+    private static void isNegative(int money) {
         if (money < LottoConstants.MIN_AMOUNT) {
             throw new IllegalArgumentException(AmountErrorMessage.AMOUNT_MIN_MORE.getMessage());
         }
     }
 
-    public static void isMaximum(int money) {
+    private static void isMaximum(int money) {
         if (money > LottoConstants.MAX_AMOUNT) {
             throw new IllegalArgumentException(AmountErrorMessage.AMOUNT_MAX_UNDER.getMessage());
         }
-    }
-
-    public static void isAmount(String amount) {
-        int money = isNumber(amount);
-        isNegative(money);
-        isMaximum(money);
-        isUnit(money);
     }
 }
