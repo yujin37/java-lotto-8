@@ -3,6 +3,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Rank;
@@ -38,8 +39,10 @@ public class LottoController {
                 String purChaseAmount = inputView.inputPurchaseAmount();
                 AmountValidator.isAmount(purChaseAmount);
                 return countConverter.convertToCount(purChaseAmount);
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            } catch (NoSuchElementException e) {
+                throw e;
             }
         }
     }
