@@ -2,15 +2,18 @@ package lotto.controller;
 
 
 import java.util.List;
+import java.util.Map;
 import lotto.config.LottoFactory;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
+import lotto.domain.Rank;
 import lotto.service.AmountValidator;
 import lotto.service.BonusValidator;
 import lotto.service.CountConverter;
 import lotto.domain.GenerateNumbers;
 import lotto.service.NumbersConverter;
 import lotto.service.NumbersValidator;
+import lotto.service.WinningDetails;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -77,5 +80,8 @@ public class LottoController {
         List<Integer> winningNumbers = checkNumbers();
         Lotto lotto = new Lotto(winningNumbers);
         int bonusNum = checkBonus(winningNumbers);
+        WinningDetails winningDetails = new WinningDetails();
+        Map<Rank, Integer> winningResult = winningDetails.calculateWinning(tickets, winningNumbers, bonusNum);
+        outputView.outputStatistics(winningResult);
     }
 }
