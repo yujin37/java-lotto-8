@@ -5,8 +5,10 @@ import java.util.List;
 import lotto.exception.NumberErrorMessage;
 
 public class NumbersConverter {
+    private final static String SPLIT_CHAR = ",";
+
     private List<String> parseNumber(String numbers) {
-        return List.of(numbers.split(","));
+        return List.of(numbers.split(SPLIT_CHAR));
     }
 
     private Integer convertInt(String number, String errorMessage) {
@@ -20,12 +22,11 @@ public class NumbersConverter {
     //숫자를 위 함수에서 변환해서 넣어준다.
     private List<Integer> convertNumber(List<String> numbers) {
         List<Integer> convertedNumber = new ArrayList<>();
-        for(String num:numbers) {
+        for (String num : numbers) {
             convertedNumber.add(convertInt(num, NumberErrorMessage.WINNING_NUMBERS_NOT_NUMBER.getMessage()));
         }
         return convertedNumber;
     }
-
 
 
     public List<Integer> convertToNumbers(String numbers) {
