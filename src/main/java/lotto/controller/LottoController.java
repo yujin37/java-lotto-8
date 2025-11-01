@@ -3,18 +3,15 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.config.LottoFactory;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Rank;
 import lotto.service.AmountValidator;
 import lotto.service.BonusValidator;
 import lotto.service.CountConverter;
-import lotto.domain.GenerateNumbers;
+import lotto.service.LottoService;
 import lotto.service.NumbersConverter;
 import lotto.service.NumbersValidator;
-import lotto.service.ProfitCalculator;
-import lotto.service.WinningDetails;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,8 +22,10 @@ public class LottoController {
     private final NumbersConverter numbersConverter;
 
     private final LottoMachine lottoMachine = new LottoMachine();
+    private final LottoService lottoService = new LottoService();
 
-    public LottoController(InputView inputView, OutputView outputView, CountConverter countConverter, NumbersConverter numbersConverter) {
+    public LottoController(InputView inputView, OutputView outputView, CountConverter countConverter,
+                           NumbersConverter numbersConverter) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.countConverter = countConverter;
@@ -52,7 +51,9 @@ public class LottoController {
                 //로또를 먼저 검증
                 NumbersValidator.isNumbers(winningNumber);
                 //로또 변환
-                return numbersConverter.convertToNumbers(winningNumber);
+                List<Integer> winningNumbers = numbersConverter.convertToNumbers(winningNumber);
+                new Lotto(winningNumbers);
+                return winningNumbers;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -73,19 +74,17 @@ public class LottoController {
             }
         }
     }
+
     public void run() {
         int count = checkAmount();
         outputView.outputPurchaseCount(count);
-        List<List<Integer>> tickets = lottoMachine.issueTicket(count);
+        List<List<Integer>> tickets = lottoService.generateTickets(count);
         outputView.outputTickets(tickets);
         List<Integer> winningNumbers = checkNumbers();
-        Lotto lotto = new Lotto(winningNumbers);
         int bonusNum = checkBonus(winningNumbers);
-        WinningDetails winningDetails = new WinningDetails();
-        Map<Rank, Integer> winningResult = winningDetails.calculateWinning(tickets, winningNumbers, bonusNum);
+        Map<Rank, Integer> winningResult = lottoService.calculateWinning(tickets, winningNumbers, bonusNum);
         outputView.outputStatistics(winningResult);
-        ProfitCalculator profitCalculator = new ProfitCalculator();
-        double profit = profitCalculator.calculateProfitRate(winningResult, count);
+        double profit = lottoService.calculateProfit(winningResult, count);
         outputView.outputProfitRate(profit);
     }
 }
