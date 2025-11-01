@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.exception.LottoConstants;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -26,15 +27,10 @@ public class Lotto {
 
     public void validateRange(List<Integer> numbers) {
         long filteredNumbers = numbers.stream()
-                .filter(n -> (n >= 1 && n <= 45))
+                .filter(n -> (n >= LottoConstants.MIN_NUM && n <= LottoConstants.MAX_NUM))
                 .count();
         if (filteredNumbers != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 범위에 있지 않습니다. 반드시 1 ~ 45 사이의 숫자로 구성되어야 합니다.");
         }
     }
-
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
 }
