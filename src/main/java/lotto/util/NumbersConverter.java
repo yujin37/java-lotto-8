@@ -14,7 +14,7 @@ public class NumbersConverter {
     }
 
     public int convertToBonus(String number) {
-        return convertInt(number, NumberErrorMessage.BONUS_NUMBER_NOT_NUMBER.getMessage());
+        return convertInt(number.strip(), NumberErrorMessage.BONUS_NUMBER_NOT_NUMBER.getMessage());
     }
 
     private List<String> parseNumber(String numbers) {
