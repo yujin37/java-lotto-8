@@ -17,22 +17,10 @@ public class LottoController {
 
 
     public void run() {
-        int count = lottoInputService.checkAmount();
-        outputView.outputPurchaseCount(count);
-
-        List<List<Integer>> tickets = lottoMachine.issueTicket(count);
-        outputView.outputTickets(tickets);
-
-        List<Integer> winningNumbers = lottoInputService.checkNumbers();
-        int bonusNum = lottoInputService.checkBonus(winningNumbers);
-
-        WinningDetails winningDetails = new WinningDetails();
-        Map<Rank, Integer> winningResult = winningDetails.calculateWinning(tickets, winningNumbers, bonusNum);
-        outputView.outputStatistics(winningResult);
-
-        ProfitCalculator calculator = new ProfitCalculator();
-        double profit = calculator.calculateProfitRate(winningResult, count);
-        outputView.outputProfitRate(profit);
+        int count = purchaseAmount();
+        List<List<Integer>> tickets = issueLottoNumbers(count);
+        Map<Rank, Integer> winningResult = processWinning(tickets);
+        processProfitRate(winningResult, count);
     }
 
     public LottoController(LottoInputService lottoInputService, OutputView outputView, LottoMachine lottoMachine) {
@@ -41,5 +29,32 @@ public class LottoController {
         this.lottoMachine = lottoMachine;
     }
 
+    private int purchaseAmount() {
+        int count = lottoInputService.checkAmount();
+        outputView.outputPurchaseCount(count);
+        return count;
+    }
+
+    private List<List<Integer>> issueLottoNumbers(int count) {
+        List<List<Integer>> tickets = lottoMachine.issueTicket(count);
+        outputView.outputTickets(tickets);
+        return tickets;
+    }
+
+    private Map<Rank, Integer> processWinning(List<List<Integer>> tickets) {
+        List<Integer> winningNumbers = lottoInputService.checkNumbers();
+        int bonusNum = lottoInputService.checkBonus(winningNumbers);
+
+        WinningDetails winningDetails = new WinningDetails();
+        Map<Rank, Integer> winningResult = winningDetails.calculateWinning(tickets, winningNumbers, bonusNum);
+        outputView.outputStatistics(winningResult);
+        return winningResult;
+    }
+
+    private void processProfitRate(Map<Rank, Integer> winningResult, int count) {
+        ProfitCalculator calculator = new ProfitCalculator();
+        double profit = calculator.calculateProfitRate(winningResult, count);
+        outputView.outputProfitRate(profit);
+    }
 
 }
