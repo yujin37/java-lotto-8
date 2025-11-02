@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import lotto.domain.Rank;
 import lotto.exception.LottoMessage;
 
 public class OutputView {
+    private static final DecimalFormat df = new DecimalFormat("#,###.#");
 
     public void outputPurchaseCount(int count) {
         System.out.println(LottoMessage.LINE_BREAK + count + LottoMessage.PURCHASE_SUCCESS);
@@ -38,6 +40,6 @@ public class OutputView {
     }
 
     public void outputProfitRate(double profit) {
-        System.out.println(LottoMessage.PROFIT_PREFIX + profit + LottoMessage.PROFIT_SUFFIX);
+        System.out.println(LottoMessage.PROFIT_PREFIX + df.format(profit) + LottoMessage.PROFIT_SUFFIX);
     }
 }
