@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.util;
 
 import static lotto.exception.NumberErrorMessage.WINNING_NUMBERS_EMPTY;
 

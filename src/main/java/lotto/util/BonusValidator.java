@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.util;
 
 import java.util.List;
 import lotto.exception.LottoConstants;
@@ -10,7 +10,7 @@ public class BonusValidator {
         duplicateBonus(winningNumber, bonusNumber);
         validateRange(bonusNumber);
     }
-    
+
     private static void duplicateBonus(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(NumberErrorMessage.BONUS_DUPLICATE_WINNING_NUMBER.getMessage());
