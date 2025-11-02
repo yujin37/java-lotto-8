@@ -6,7 +6,8 @@ import java.util.function.Predicate;
 import lotto.domain.Rank;
 
 public class WinningDetails {
-    public Map<Rank, Integer> calculateWinning(List<List<Integer>> tickets, List<Integer> winningNumbers, int bonus) {
+    public Map<Rank, Integer> calculateWinning(List<List<Integer>> tickets, List<Integer> winningNumbers,
+                                               int bonus) {
 
         Map<Rank, Integer> resultWinning = WinningResultFactory.createInitialResult();
         for (List<Integer> ticket : tickets) {

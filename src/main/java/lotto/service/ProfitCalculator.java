@@ -10,7 +10,7 @@ public class ProfitCalculator {
         int total = calculateTotal(winningResult);
         return calculateRate(total, count);
     }
-    
+
     private int calculateTotal(Map<Rank, Integer> winningResult) {
         int totalProfit = 0;
         for (Map.Entry<Rank, Integer> entry : winningResult.entrySet()) {
