@@ -4,6 +4,8 @@ import lotto.exception.AmountErrorMessage;
 import lotto.exception.LottoConstants;
 
 public class AmountValidator {
+    private AmountValidator() {
+    }
 
     public static void isAmount(String amount) {
         int money = isNumber(amount);

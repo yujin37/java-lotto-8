@@ -5,6 +5,8 @@ import static lotto.exception.NumberErrorMessage.WINNING_NUMBERS_EMPTY;
 import lotto.exception.NumberErrorMessage;
 
 public class NumbersValidator {
+    private NumbersValidator() {
+    }
 
     public static void isNumbers(String numbers) {
         isEmpty(numbers.strip(), WINNING_NUMBERS_EMPTY.getMessage());

@@ -6,6 +6,9 @@ import lotto.exception.NumberErrorMessage;
 
 public class BonusValidator {
 
+    private BonusValidator() {
+    }
+
     public static void validateBonus(List<Integer> winningNumber, int bonusNumber) {
         duplicateBonus(winningNumber, bonusNumber);
         validateRange(bonusNumber);
