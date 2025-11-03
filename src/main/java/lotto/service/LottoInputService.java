@@ -12,16 +12,10 @@ import lotto.view.InputView;
 
 public class LottoInputService {
     private final InputView inputView;
-    private final CountConverter countConverter;
-    private final NumbersConverter numbersConverter;
 
     // 생성자 주입
-    public LottoInputService(InputView inputView,
-                             CountConverter countConverter,
-                             NumbersConverter numbersConverter) {
+    public LottoInputService(InputView inputView) {
         this.inputView = inputView;
-        this.countConverter = countConverter;
-        this.numbersConverter = numbersConverter;
     }
 
 
@@ -30,7 +24,7 @@ public class LottoInputService {
             try {
                 String purChaseAmount = inputView.inputPurchaseAmount();
                 AmountValidator.isAmount(purChaseAmount);
-                return countConverter.convertToCount(purChaseAmount);
+                return CountConverter.convertToCount(purChaseAmount);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             } catch (NoSuchElementException e) {
@@ -46,7 +40,7 @@ public class LottoInputService {
                 //로또를 먼저 검증
                 NumbersValidator.isNumbers(winningNumber);
                 //로또 변환
-                List<Integer> winningNumbers = numbersConverter.convertToNumbers(winningNumber);
+                List<Integer> winningNumbers = NumbersConverter.convertToNumbers(winningNumber);
                 new Lotto(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
@@ -63,7 +57,7 @@ public class LottoInputService {
                 String bonusNumber = inputView.inputBonusNumber();
                 //검증 자체는 동일
                 NumbersValidator.isNumbers(bonusNumber);
-                int bonus = numbersConverter.convertToBonus(bonusNumber);
+                int bonus = NumbersConverter.convertToBonus(bonusNumber);
                 BonusValidator.validateBonus(winningNumbers, bonus);
                 return bonus;
             } catch (IllegalArgumentException e) {

@@ -7,8 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import lotto.exception.LottoMessage;
-import lotto.util.CountConverter;
-import lotto.util.NumbersConverter;
 import lotto.view.InputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -29,9 +27,7 @@ public class AmountUnitTest {
         InputView inputView = new InputView();
 
         LottoInputService service = new LottoInputService(
-                inputView,
-                new CountConverter(),
-                new NumbersConverter()
+                inputView
         );
 
         //when
@@ -49,9 +45,7 @@ public class AmountUnitTest {
 
         InputView inputView = new InputView();
         LottoInputService service = new LottoInputService(
-                inputView,
-                new CountConverter(),
-                new NumbersConverter()
+                inputView
         );
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -73,9 +67,7 @@ public class AmountUnitTest {
 
         InputView inputView = new InputView();
         LottoInputService service = new LottoInputService(
-                inputView,
-                new CountConverter(),
-                new NumbersConverter()
+                inputView
         );
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -96,11 +88,7 @@ public class AmountUnitTest {
         System.setIn(new ByteArrayInputStream(amountInput.getBytes()));
 
         InputView inputView = new InputView();
-        LottoInputService service = new LottoInputService(
-                inputView,
-                new CountConverter(),
-                new NumbersConverter()
-        );
+        LottoInputService service = new LottoInputService(inputView);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));

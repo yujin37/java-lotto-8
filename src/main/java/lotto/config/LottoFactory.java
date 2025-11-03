@@ -5,8 +5,6 @@ import lotto.domain.LottoMachine;
 import lotto.service.LottoInputService;
 import lotto.service.ProfitCalculator;
 import lotto.service.WinningDetails;
-import lotto.util.CountConverter;
-import lotto.util.NumbersConverter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,16 +18,9 @@ public class LottoFactory {
         return new OutputView();
     }
 
-    public CountConverter countConverter() {
-        return new CountConverter();
-    }
-
-    public NumbersConverter numbersConverter() {
-        return new NumbersConverter();
-    }
 
     public LottoInputService lottoInputService() {
-        return new LottoInputService(inputView(), countConverter(), numbersConverter());
+        return new LottoInputService(inputView());
     }
 
     public LottoMachine lottoMachine() {
