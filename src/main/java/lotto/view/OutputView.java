@@ -9,7 +9,7 @@ import lotto.domain.Rank;
 import lotto.exception.LottoMessage;
 
 public class OutputView {
-    private static final DecimalFormat df = new DecimalFormat("#,###.#");
+    private static final DecimalFormat df = new DecimalFormat("#,##0.0");
 
     public void outputPurchaseCount(int count) {
         System.out.println(LottoMessage.LINE_BREAK + count + LottoMessage.PURCHASE_SUCCESS);
