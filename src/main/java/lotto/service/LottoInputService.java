@@ -49,8 +49,10 @@ public class LottoInputService {
                 List<Integer> winningNumbers = numbersConverter.convertToNumbers(winningNumber);
                 new Lotto(winningNumbers);
                 return winningNumbers;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            } catch (NoSuchElementException e) {
+                throw e;
             }
         }
     }
@@ -64,8 +66,10 @@ public class LottoInputService {
                 int bonus = numbersConverter.convertToBonus(bonusNumber);
                 BonusValidator.validateBonus(winningNumbers, bonus);
                 return bonus;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            } catch (NoSuchElementException e) {
+                throw e;
             }
         }
     }
