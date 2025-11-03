@@ -5,18 +5,20 @@ import lotto.exception.LottoMessage;
 
 public class InputView {
 
-    public static String inputPurchaseAmount() {
-        System.out.println(LottoMessage.PURCHASE_MESSAGE);
+    private static String readConsole(String message) {
+        System.out.println(message);
         return Console.readLine();
+    }
+
+    public static String inputPurchaseAmount() {
+        return readConsole(LottoMessage.PURCHASE_MESSAGE);
     }
 
     public static String inputWinningNumbers() {
-        System.out.println(LottoMessage.WINNING_MESSAGE);
-        return Console.readLine();
+        return readConsole(LottoMessage.WINNING_MESSAGE);
     }
 
     public static String inputBonusNumber() {
-        System.out.println(LottoMessage.BONUS_MESSAGE);
-        return Console.readLine();
+        return readConsole(LottoMessage.BONUS_MESSAGE);
     }
 }
