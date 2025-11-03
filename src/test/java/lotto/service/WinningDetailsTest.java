@@ -1,11 +1,10 @@
-package lotto;
+package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Rank;
-import lotto.service.WinningDetails;
 import org.junit.jupiter.api.Test;
 
 public class WinningDetailsTest {

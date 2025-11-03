@@ -1,11 +1,10 @@
-package lotto;
+package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
 import lotto.domain.Rank;
-import lotto.service.ProfitCalculator;
 import org.junit.jupiter.api.Test;
 
 public class ProfitCalculateTest {

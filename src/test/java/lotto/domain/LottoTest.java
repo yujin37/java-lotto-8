@@ -1,12 +1,10 @@
-package lotto;
-
-import lotto.domain.Lotto;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -24,7 +22,7 @@ class LottoTest {
 
     @Test
     void 로또번호가_번호_범위에_속하지_않는_경우() {
-        assertThatThrownBy(() -> new Lotto(List.of(1,34,5,21,44,57)))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 34, 5, 21, 44, 57)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

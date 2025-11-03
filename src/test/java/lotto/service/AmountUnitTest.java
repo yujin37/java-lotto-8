@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,7 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import lotto.exception.LottoMessage;
-import lotto.service.LottoInputService;
 import lotto.util.CountConverter;
 import lotto.util.NumbersConverter;
 import lotto.view.InputView;

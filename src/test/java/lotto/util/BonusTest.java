@@ -1,13 +1,10 @@
-package lotto;
+package lotto.util;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.exception.NumberErrorMessage;
-import lotto.util.BonusValidator;
-import lotto.util.NumbersConverter;
-import lotto.util.NumbersValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
